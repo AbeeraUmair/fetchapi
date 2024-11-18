@@ -2,6 +2,7 @@
 'use client'
 import React, { useState } from 'react';
 
+
 // Define the Article type
 type Article = {
     source: { name: string };
@@ -13,6 +14,10 @@ type Article = {
     publishedAt: string;
     content: string | null;
 };
+
+// Use the API key
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+// Configure dotenv
 
 const NewsSearch: React.FC = () => {
     const [query, setQuery] = useState('');
@@ -30,9 +35,8 @@ const NewsSearch: React.FC = () => {
         }
 
         try {
-            const response = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=2024-10-08&sortBy=publishedAt&apiKey=ea58b1a784bb4a1ebbc439b1bc245772`);
+            const response = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=2024-10-18&sortBy=publishedAt&apiKey=${apiKey}`);
             const data = await response.json();
-
             if (data.articles && data.articles.length > 0) {
                 setArticles(data.articles);
             } else {
@@ -69,7 +73,7 @@ const NewsSearch: React.FC = () => {
                 {articles.map((article, index) => (
                     <div key={index} className="p-4 bg-white rounded-lg shadow-md">
                         <img
-                            src={article.urlToImage || 'default_image_url_here'}
+                            src={article.urlToImage || ''}
                             alt="Article image"
                             className="object-cover w-full h-32 rounded-md"
                         />
