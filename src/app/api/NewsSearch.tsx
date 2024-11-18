@@ -1,9 +1,7 @@
-// components/NewsSearch.tsx
+
 'use client'
 import React, { useState } from 'react';
 
-
-// Define the Article type
 type Article = {
     source: { name: string };
     author: string | null;
@@ -17,7 +15,6 @@ type Article = {
 
 // Use the API key
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-// Configure dotenv
 
 const NewsSearch: React.FC = () => {
     const [query, setQuery] = useState('');
